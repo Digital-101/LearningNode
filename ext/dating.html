@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavas Dating App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            padding: 16px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        .button {
+            background-color: blue;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-box {
+            padding: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        @media (min-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Lavas Dating App</h1>
+    <input type="text" id="search" class="search-box" placeholder="Search Profiles" onkeyup="filterProfiles()">
+    
+    <div id="profiles" class="grid"></div>
+    
+    <script>
+        const profiles = [
+            { id: 1, name: "Alice", bio: "Love hiking and reading!", profilePic: "https://mlssyc5aactc.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://theculturevulture.co.uk/wp-content/uploads/2010/06/alice.jpg", goal: "Serious Relationship" },
+            { id: 2, name: "Bob", bio: "Foodie and aspiring chef.", profilePic: "https://cdna.artstation.com/p/assets/images/images/021/576/376/large/enzo-takerian-asset.jpg?1572208359", goal: "Friendship" }
+        ];
+
+        function displayProfiles(filteredProfiles) {
+            const profilesContainer = document.getElementById("profiles");
+            profilesContainer.innerHTML = "";
+            filteredProfiles.forEach(profile => {
+                const profileCard = `
+                    <div class="card">
+                        <img src="${profile.profilePic}" alt="${profile.name}" class="avatar">
+                        <h2>${profile.name}</h2>
+                        <p>${profile.bio}</p>
+                        <p><small>Goal: ${profile.goal}</small></p>
+                        <button class="button">Send Message</button>
+                    </div>
+                `;
+                profilesContainer.innerHTML += profileCard;
+            });
+        }
+        
+        function filterProfiles() {
+            const searchInput = document.getElementById("search").value.toLowerCase();
+            const filtered = profiles.filter(profile => profile.name.toLowerCase().includes(searchInput));
+            displayProfiles(filtered);
+        }
+        
+        displayProfiles(profiles);
+    </script>
+</body>
+</html>
