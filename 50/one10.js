@@ -1,4 +1,5 @@
-for (var i = 1; i<11; I++)
+//print numbers 1 - 10
+for (var i = 1; i < 11; i++) 
   {
-    println(i);
-  }
+  console.log(i);
+}
